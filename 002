@@ -1,0 +1,78 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) { val = x; }
+ * }
+ */
+
+class Solution {        
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        ListNode res=new ListNode(0);
+        ListNode start =res;
+        int flag=0,a,b,result;
+        while(l1!= null || l2!= null)
+        {
+            a=b=0;
+            if(l1!=null) a=l1.val;
+            if(l2!=null) b=l2.val;
+            result= (a+b+flag)%10;
+            flag=(a+b+flag)/10;
+            res.next=new ListNode(result);
+            res=res.next;
+            if(l1!=null)
+                l1=l1.next;
+            if(l2!=null)
+                l2=l2.next;
+
+        }
+        if(flag!=0)
+        {
+            res.next=new ListNode(1);
+            res.next.next=null;
+        }
+        else
+            res.next=null;
+        
+        return start.next;
+        
+        
+//         ListNode res=new ListNode(0);
+//         ListNode sum=res;
+//         int carry =0;
+//         while(l1!=null||l2!=null||carry!=0)
+//         {
+//             int l1val=l1!=null?l1.val:0;
+//             int l2val=l2!=null?l2.val:0;
+//             int sumval=l1val+l2val+carry;
+//             carry=sumval/10;
+//             ListNode sumNode=new ListNode(sumval%10);
+//             sum.next=sumNode;
+//             sum=sumNode;
+            
+//             if(l1!=null)l1=l1.next;
+//             if(l2!=null)l2=l2.next;
+            
+//         }
+//         return res.next;
+        // ListNode p=l1;
+        // ListNode q=l2;
+        // int addnum=0;
+        // while(p!=null||q!=null||addnum!=0)
+        // {
+        //     if(p.next==null && q.next!=null)
+        //         p.next=new ListNode(0);
+        //     if(q.next==null && p.next!=null)
+        //         q.next=new ListNode(0);
+        //     int temp=p.val+q.val+addnum;
+        //     addnum=temp/10;
+        //     q.val=temp%10;
+        //     if(q.next==null&&p.next==null&&addnum==1)
+        //         p.next=new ListNode(1);
+        //     p=p.next;
+        //     q=q.next;
+        // }
+        // return l2;
+    }
+}
